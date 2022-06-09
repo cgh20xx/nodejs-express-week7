@@ -1,7 +1,6 @@
 const UserModel = require('../models/UserModel');
 const successResponse = require('../services/successResponse');
 const AppError = require('../services/appError');
-const { generateJWT } = require('../services/auth');
 
 const upload = {
   /**
