@@ -1,20 +1,13 @@
-# nodejs-express-week6
-## LV1：設計五個會員相關 API
-- 註冊會員 (取得JWT) `router.post('/user/sign_up')`
-- 會員登入 (取得JWT) `router.post('/user/log_in')`
-- 重設密碼 (需登入) `router.post('/user/update_password')`
-- 取得個人資料 (需登入) `router.get('/user/profile')`
-- 更新個人資料 (需登入) `router.patch('/user/profile')`
-
-## LV2：調整第四週 API，都加上登入驗證的 middleware
-- 觀看所有貼文 `router.get('/posts')`
-- 張貼個人貼文 `router.post('/post')`
-
+# nodejs-express-week7
+## 圖片上傳
+- 介接 Imgur 第三方圖床服務。[教學文件](https://israynotarray.com/nodejs/20220517/432259079/)
+- 設計一個 /upload 路由，來設計上傳圖片功能，後端得驗證是否符合 2mb 限制、格式支援 jpg、png
+- 需通過 isAuth 登入驗證 middleware 才可上傳
 
 ## 安裝專案
 ```
-$ git clone git@github.com:cgh20xx/nodejs-express-week6.git
-$ cd nodejs-express-week6
+$ git clone git@github.com:cgh20xx/nodejs-express-week7.git
+$ cd nodejs-express-week7
 $ npm install
 ```
 
