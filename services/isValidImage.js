@@ -12,7 +12,7 @@ const upload = multer({
       cb(
         new AppError({
           statusCode: 400,
-          message: '[檔案格式錯誤] 僅限上傳 jpg、jpeg 與 png 格式。',
+          message: '[上傳錯誤] 檔案格式錯誤：僅限上傳 jpg、jpeg 與 png 格式。',
         })
       );
     }
