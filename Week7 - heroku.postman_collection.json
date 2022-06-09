@@ -1,0 +1,540 @@
+{
+	"info": {
+		"_postman_id": "b67abdbb-b8cd-400e-87b3-d56f05a4cf72",
+		"name": "Week7 - heroku",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1062598"
+	},
+	"item": [
+		{
+			"name": "貼文相關功能 Post",
+			"item": [
+				{
+					"name": "取得所有貼文 (需登入)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hank-express-week7.herokuapp.com/api/meta/posts",
+							"protocol": "https",
+							"host": [
+								"hank-express-week7",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"meta",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "新增個人貼文 (需登入)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"今天交作業\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hank-express-week7.herokuapp.com/api/meta/post",
+							"protocol": "https",
+							"host": [
+								"hank-express-week7",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"meta",
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "刪除所有貼文",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hank-express-week7.herokuapp.com/api/meta/posts",
+							"protocol": "https",
+							"host": [
+								"hank-express-week7",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"meta",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "刪除單筆貼文",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hank-express-week7.herokuapp.com/api/meta/post/62664d2515412f59b18a508b",
+							"protocol": "https",
+							"host": [
+								"hank-express-week7",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"meta",
+								"post",
+								"62664d2515412f59b18a508b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改單筆貼文",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"今天真不錯\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hank-express-week7.herokuapp.com/api/meta/post/628a412a68b4ae1ed3758607",
+							"protocol": "https",
+							"host": [
+								"hank-express-week7",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"meta",
+								"post",
+								"628a412a68b4ae1ed3758607"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "會員相關功能 User",
+			"item": [
+				{
+					"name": "註冊會員 (取得JWT)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var token = pm.response.json().data?.token;",
+									"if (!token) return;",
+									"pm.collectionVariables.set(\"TOKEN\", token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"heroku\",\n    \"email\": \"bb@heroku.cc\",\n    \"password\": \"12345678\",\n    \"confirmPassword\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hank-express-week7.herokuapp.com/api/meta/user/sign_up",
+							"protocol": "https",
+							"host": [
+								"hank-express-week7",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"meta",
+								"user",
+								"sign_up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "會員登入 (取得JWT)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var token = pm.response.json().data?.token;",
+									"if (!token) return;",
+									"pm.collectionVariables.set(\"TOKEN\", token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"bb@bb.cc\",\n    \"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hank-express-week7.herokuapp.com/api/meta/user/log_in",
+							"protocol": "https",
+							"host": [
+								"hank-express-week7",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"meta",
+								"user",
+								"log_in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "重設密碼 (需登入)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"12345678\",\n    \"confirmPassword\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hank-express-week7.herokuapp.com/api/meta/user/update_password",
+							"protocol": "https",
+							"host": [
+								"hank-express-week7",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"meta",
+								"user",
+								"update_password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "取得個人資料 (需登入)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hank-express-week7.herokuapp.com/api/meta/user/profile",
+							"protocol": "https",
+							"host": [
+								"hank-express-week7",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"meta",
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "更新個人資料 (需登入)",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"AAAA\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hank-express-week7.herokuapp.com/api/meta/user/profile",
+							"protocol": "https",
+							"host": [
+								"hank-express-week7",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"meta",
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "上傳圖片 (需登入)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "img",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "https://hank-express-week7.herokuapp.com/api/meta/upload",
+							"protocol": "https",
+							"host": [
+								"hank-express-week7",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"meta",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User CRUD",
+			"item": [
+				{
+					"name": "取得所有使用者",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hank-express-week7.herokuapp.com/api/meta/users",
+							"protocol": "https",
+							"host": [
+								"hank-express-week7",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"meta",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改單筆使用者",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Hank abc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hank-express-week7.herokuapp.com/api/meta/user/629cb33009f8df9f778f20ed",
+							"protocol": "https",
+							"host": [
+								"hank-express-week7",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"meta",
+								"user",
+								"629cb33009f8df9f778f20ed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "刪除所有使用者",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hank-express-week7.herokuapp.com/api/meta/users",
+							"protocol": "https",
+							"host": [
+								"hank-express-week7",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"meta",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "刪除單筆使用者",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hank-express-week7.herokuapp.com/api/meta/user/628a349002f8641861c7fc1a",
+							"protocol": "https",
+							"host": [
+								"hank-express-week7",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"meta",
+								"user",
+								"628a349002f8641861c7fc1a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "TOKEN",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
